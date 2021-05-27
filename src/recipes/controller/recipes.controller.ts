@@ -1,13 +1,22 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { RecipeDto } from '../recipe.dto';
 import { RecipesService } from '../service/recipes.service';
 
-@Controller('recipes')
+@Controller('recipe')
 export class RecipesController {
   constructor(private readonly RecipesService: RecipesService) {}
 
   @Post('add')
-  async addRecipes() {
-    return 'Added new recipe successfully';
+  @UsePipes(ValidationPipe)
+  async addRecipes(@Body() recipeDto: RecipeDto) {
+    return recipeDto;
   }
 
   @Get('all')
