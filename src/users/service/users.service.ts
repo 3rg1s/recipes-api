@@ -39,6 +39,8 @@ export class UsersService {
       !(await this.authService.comparePasswords(login.Password, user.Password))
     ) {
       throw new BadRequestException('invalid credentials');
+    } else {
+      return this.authService.generatejwt(login);
     }
   }
 }
