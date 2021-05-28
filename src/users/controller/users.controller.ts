@@ -6,7 +6,10 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from '../service/users.service';
-import { UserDto } from '../user.dto';
+import { UserSignupDto } from '../dtos/usersignup.dto';
+import { UserLoginDto } from '../dtos/userlogin.dto';
+import { UserInterface } from '../models/user.interface';
+import { IsEmail } from 'class-validator';
 
 @Controller('users')
 export class UsersController {
@@ -14,12 +17,13 @@ export class UsersController {
 
   @Post('signup')
   @UsePipes(ValidationPipe)
-  async createUser(@Body() userDto: UserDto) {
-    return userDto;
+  async createUser(@Body() UserSignupDto: UserSignupDto) {
+    return this.UserService.create(UserSignupDto);
   }
 
   @Post('login')
-  async loginuser() {
-    return 'User logged in';
+  @UsePipes(ValidationPipe)
+  async loginuser(@Body() userLoginDto: UserLoginDto) {
+    return this.UserService.login(userLoginDto);
   }
 }
