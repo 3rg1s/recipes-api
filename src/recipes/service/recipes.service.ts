@@ -12,4 +12,8 @@ export class RecipesService {
   async add(Recipe: RecipeDto) {
     await this.recipeReposirtory.save(Recipe);
   }
+
+  async listall() {
+    return await this.recipeReposirtory.find();
+  }
 }

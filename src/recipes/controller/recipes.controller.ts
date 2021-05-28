@@ -26,6 +26,6 @@ export class RecipesController {
   @Get('all')
   @UsePipes(ValidationPipe)
   async viewRecipes() {
-    return 'Here is a list of recipes';
+    return this.RecipesService.listall();
   }
 }
