@@ -15,11 +15,9 @@ export class UsersController {
   @Post('signup')
   @UsePipes(ValidationPipe)
   async createUser(@Body() userDto: UserDto) {
-    return userDto;
+    return this.UserService.userCreate(userDto);
   }
 
   @Post('login')
-  async loginuser() {
-    return 'User logged in';
-  }
+  async loginuser() {}
 }

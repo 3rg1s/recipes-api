@@ -5,7 +5,7 @@ export class recipeEntity {
   @PrimaryGeneratedColumn()
   id: Number;
 
-  @Column({ varchar: 235 })
+  @Column()
   Name: String;
 
   @Column()
