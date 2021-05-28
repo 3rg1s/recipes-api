@@ -8,7 +8,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/strategies/guards/jwt-auth.guard';
-import { RecipeDto } from '../recipe.dto';
+import { RecipeDto } from '../dtos/recipe.dto';
+import { recipeEntity } from '../models/recipe.entity';
 import { RecipesService } from '../service/recipes.service';
 
 @Controller('recipe')
@@ -18,11 +19,12 @@ export class RecipesController {
   @Post('add')
   @UsePipes(ValidationPipe)
   async addRecipes(@Body() recipeDto: RecipeDto) {
-    return recipeDto;
+    this.RecipesService.add(recipeDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('all')
+  @UsePipes(ValidationPipe)
   async viewRecipes() {
     return 'Here is a list of recipes';
   }
