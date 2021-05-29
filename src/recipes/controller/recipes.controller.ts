@@ -12,8 +12,10 @@ import { RecipeDto } from '../dtos/recipe.dto';
 import { recipeEntity } from '../models/recipe.entity';
 import { RecipesService } from '../service/recipes.service';
 import {
+  ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
+  ApiResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
@@ -22,16 +24,17 @@ export class RecipesController {
   constructor(private readonly RecipesService: RecipesService) {}
 
   @Post('add')
-  @ApiCreatedResponse({ description: 'Recipe Added successfully' })
+  @ApiCreatedResponse({ description: 'Recipe success' })
+  @ApiBadRequestResponse({ description: 'Recipe failed' })
   @UsePipes(ValidationPipe)
   async addRecipes(@Body() recipeDto: RecipeDto) {
-    this.RecipesService.add(recipeDto);
+    return this.RecipesService.add(recipeDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('all')
   @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Please provide a jwt' })
+  @ApiUnauthorizedResponse({ description: 'Please provide an access token' })
   @UsePipes(ValidationPipe)
   async viewRecipes() {
     return this.RecipesService.listall();

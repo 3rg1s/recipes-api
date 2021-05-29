@@ -6,16 +6,14 @@ export class recipeEntity {
   id: Number;
 
   @Column()
-  Name: String;
+  Title: String;
 
   @Column()
-  ready_in: Number;
+  Preparation_time: Number;
 
   @Column()
-  directions: String;
+  Description: String;
 
   @Column()
   ingredients: String;
 }
-
-

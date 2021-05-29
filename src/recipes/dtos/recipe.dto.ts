@@ -9,18 +9,18 @@ export class RecipeDto {
 
   @Column()
   @IsNotEmpty()
-  @ApiProperty({ type: 'string', description: 'Name' })
-  Name: String;
+  @ApiProperty({ type: 'string', description: 'Title' })
+  Title: String;
 
   @Column()
   @IsNotEmpty()
-  @ApiProperty({ type: 'number', description: 'ready_in' })
-  ready_in: Number;
+  @ApiProperty({ type: 'number', description: 'Preparation_time' })
+  Preparation_time: Number;
 
   @Column()
   @IsNotEmpty()
-  @ApiProperty({ type: 'string', description: 'directions' })
-  directions: String;
+  @ApiProperty({ type: 'string', description: 'Description' })
+  Description: String;
 
   @Column('text', { array: true })
   @IsNotEmpty()
