@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
+import { ApiBadRequestResponse } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RecipeDto } from '../dtos/recipe.dto';
@@ -10,7 +11,14 @@ export class RecipesService {
   private readonly recipeReposirtory: Repository<recipeEntity>;
 
   async add(Recipe: RecipeDto) {
-    await this.recipeReposirtory.save(Recipe);
+    return await this.recipeReposirtory
+      .save(Recipe)
+      .then((recipe) => {
+        return { status: 'Recipe added', recipe: Recipe };
+      })
+      .catch((error) => {
+        throw new BadRequestException('Failed to Add recipe');
+      });
   }
 
   async listall() {
