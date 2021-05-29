@@ -15,5 +15,7 @@ export class recipeEntity {
   directions: String;
 
   @Column()
-  ingredients: String[];
+  ingredients: String;
 }
+
+
