@@ -26,7 +26,6 @@ export class RecipesController {
   @Post('add')
   @ApiCreatedResponse({ description: 'Recipe success' })
   @ApiBadRequestResponse({ description: 'Recipe failed' })
-  @UsePipes(ValidationPipe)
   async addRecipes(@Body() recipeDto: RecipeDto) {
     return this.RecipesService.add(recipeDto);
   }
@@ -35,7 +34,6 @@ export class RecipesController {
   @Get('all')
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Please provide an access token' })
-  @UsePipes(ValidationPipe)
   async viewRecipes() {
     return this.RecipesService.listall();
   }
