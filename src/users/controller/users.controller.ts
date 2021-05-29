@@ -1,24 +1,10 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from '../service/users.service';
 import { UserSignupDto } from '../dtos/usersignup.dto';
 import { UserLoginDto } from '../dtos/userlogin.dto';
-import { UserInterface } from '../models/user.interface';
-import { IsEmail } from 'class-validator';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { JwtAuthGuard } from 'src/auth/strategies/guards/jwt-auth.guard';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
-  ApiParam,
   ApiProperty,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
