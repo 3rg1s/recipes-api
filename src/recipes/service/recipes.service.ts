@@ -1,5 +1,4 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
-import { ApiBadRequestResponse } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RecipeDto } from '../dtos/recipe.dto';
