@@ -13,7 +13,7 @@ import {
 export class UsersController {
   constructor(private readonly UserService: UsersService) {}
 
-  @Post('signup')
+  @Post('register')
   @ApiProperty()
   @ApiCreatedResponse({ description: 'User Created successfully' })
   async createUser(@Body() UserSignupDto: UserSignupDto) {
