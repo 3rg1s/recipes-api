@@ -23,7 +23,7 @@ export class UsersService {
     data.Password = await this.authService.hashPassword(plain);
     try {
       await this.userRepository.save(data);
-      return 'everything went fine';
+      return { message: 'User Created' };
     } catch (error) {
       throw new BadRequestException('Something went wrong');
     }

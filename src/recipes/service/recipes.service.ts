@@ -14,7 +14,7 @@ export class RecipesService {
     return await this.recipeReposirtory
       .save(Recipe)
       .then((recipe) => {
-        return { status: 'Recipe added', recipe: Recipe };
+        return { message: 'Recipe added', recipe: Recipe };
       })
       .catch((error) => {
         throw new BadRequestException('Failed to Add recipe');
