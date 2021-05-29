@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { BeforeInsert } from 'typeorm';
 
 export class UserSignupDto {
   @IsNotEmpty()
@@ -23,4 +24,9 @@ export class UserSignupDto {
   @IsNotEmpty()
   @ApiProperty({ type: 'string', description: 'Password' })
   Password: String;
+
+  @BeforeInsert()
+  emailToLowerCase() {
+    this.Email = this.Email.toLowerCase();
+  }
 }

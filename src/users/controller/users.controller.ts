@@ -30,7 +30,6 @@ export class UsersController {
   @Post('signup')
   @ApiProperty()
   @ApiCreatedResponse({ description: 'User Created successfully' })
-  @UsePipes(ValidationPipe)
   async createUser(@Body() UserSignupDto: UserSignupDto) {
     return this.UserService.create(UserSignupDto);
   }
@@ -38,7 +37,6 @@ export class UsersController {
   @Post('login')
   @ApiOkResponse({ description: 'User Login' })
   @ApiUnauthorizedResponse({ description: 'Invalid credentials' })
-  @UsePipes(ValidationPipe)
   async loginuser(@Body() userLoginDto: UserLoginDto) {
     return this.UserService.login(userLoginDto).then((result) => {
       return {
