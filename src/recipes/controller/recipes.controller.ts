@@ -1,21 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/strategies/guards/jwt-auth.guard';
 import { RecipeDto } from '../dtos/recipe.dto';
-import { recipeEntity } from '../models/recipe.entity';
 import { RecipesService } from '../service/recipes.service';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
-  ApiResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
