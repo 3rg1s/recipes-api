@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { BeforeInsert, Repository } from 'typeorm';
 import { UserSignupDto } from '../dtos/usersignup.dto';
 import { userEntity } from '../models/user.entity';
 import { UserLoginDto } from '../dtos/userlogin.dto';
@@ -15,6 +15,7 @@ export class UsersService {
   ) {}
 
   async create(data: UserSignupDto) {
+    data.Email = data.Email.toLowerCase();
     const plain = data.Password;
     data.Password = await this.authService.hashPassword(plain);
     const Email = data.Email;
@@ -33,18 +34,19 @@ export class UsersService {
       });
   }
 
-  async login(login: UserLoginDto) {
-    const Email = login.Email;
+  async login(data: UserLoginDto) {
+    data.Email = data.Email.toLowerCase();
+    const Email = data.Email;
     const user = await this.findbyemail(Email.toString());
     if (!user) {
       throw new BadRequestException('invalid credentials');
     }
     if (
-      !(await this.authService.comparePasswords(login.Password, user.Password))
+      !(await this.authService.comparePasswords(data.Password, user.Password))
     ) {
       throw new BadRequestException('invalid credentials');
     } else {
-      return this.authService.generatejwt(login);
+      return this.authService.generatejwt(data);
     }
   }
 

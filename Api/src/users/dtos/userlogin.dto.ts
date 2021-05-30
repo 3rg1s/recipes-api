@@ -10,9 +10,4 @@ export class UserLoginDto {
   @MinLength(6)
   @ApiProperty({ type: 'string', description: 'Password' })
   Password: String;
-
-  @BeforeInsert()
-  emailToLowerCase() {
-    this.Email = this.Email.toLowerCase();
-  }
 }

@@ -24,9 +24,4 @@ export class UserSignupDto {
   @IsNotEmpty()
   @ApiProperty({ type: 'string', description: 'Password' })
   Password: String;
-
-  @BeforeInsert()
-  emailToLowerCase() {
-    this.Email = this.Email.toLowerCase();
-  }
 }
