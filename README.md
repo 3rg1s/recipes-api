@@ -33,7 +33,7 @@ git clone https://github.com/3rg1s/recipes-api/
 
 We need to include some files on our directory in order to make beanstalk work. 
 
-* First create a new folder with name `.ebextensions` and inside add a file with name `.config` and content: 
+* First change directory to `recipes-api/Api` and create a new folder with name `.ebextensions` and inside create a new file `.config` and contents: 
 ```
 option_settings:
   - namespace: aws:elasticbeanstalk:application:environment 
@@ -41,7 +41,7 @@ option_settings:
     value: "false"
 ```
 
-* Now create another file on the root foler of the Api with name `.npmrc` and content: 
+* Create a file inside the Api folder with filename `.npmrc` and content: 
 ```
 unsafe-perm=true
 ```
@@ -110,18 +110,17 @@ zip -r recipe-api.zip .
 
 * [ ]  Open Elastic Beanstalk and select *Create a new environment*
 
-> Web server environment
+> Select Web server environment
 >> Application Name: `Recipe Api` 
 >>> Platform: Node.js
 >>>> Application code -> Upload your code: Choose File (We enter the file we generated previously **recipe-api.zip**)
-
 
 * Click Configure more options
 
 ### Creating postgres database
 > Scroll down and find database tab. Click Edit.
->> Engine : postgres.
->>> Also add username and password. and click Save
+>> Engine: postgres.
+>>> Also add username and password. and click Save.
 
 ### Adding environment variables
 
@@ -135,4 +134,4 @@ On Software tab click Edit and at the bottom add these environment variables.
 | JWT_SECRET      | somethingrandom#%^rwyufcew     |
 | PORT      | 8080     |
 
-Click Save and then at the bottom Create environment. The environment will build after some minutes.
+Click Save and then click **Create environment**. The environment will build after some minutes.
