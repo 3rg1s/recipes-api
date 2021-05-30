@@ -12,11 +12,11 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(<string>process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_NAME,
+      host: process.env.RDS_HOSTNAME,
+      port: parseInt(<string>process.env.RDS_PORT),
+      username: process.env.RDS_USERNAME,
+      password: process.env.RDS_PASSWORD,
+      database: process.env.RDS_DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // should not be used on production env
     }),
