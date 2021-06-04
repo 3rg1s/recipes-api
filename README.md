@@ -1,6 +1,6 @@
-## Description
-
 Simple Recipe Api Challenge Project
+-----------------------
+![GitHub issues](https://img.shields.io/github/issues/3rg1s/recipes-api?style=for-the-badge) ![Website](https://img.shields.io/website?down_color=red&down_message=Offline&style=for-the-badge&up_color=light-green&up_message=Online&url=http%3A%2F%2Frecipeapi-env.eba-ximvr5zk.eu-west-2.elasticbeanstalk.com%2F)
 
 ## Installation
 
